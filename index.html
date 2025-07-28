@@ -2,8 +2,8 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 ファンタジータイピング王国</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🦄 マジカルタイピング</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700;800&display=swap');
         
@@ -11,31 +11,31 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             font-family: 'Nunito', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
             background-size: 400% 400%;
-            animation: dreamyShift 8s ease infinite;
+            animation: rainbow 8s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        @keyframes dreamyShift {
+        @keyframes rainbow {
             0%, 100% { background-position: 0% 50%; }
             25% { background-position: 100% 50%; }
             50% { background-position: 0% 100%; }
             75% { background-position: 100% 0%; }
         }
 
-        /* 浮遊する装飾要素 */
-        .floating-decorations {
+        /* 魔法のキラキラ */
+        .sparkles {
             position: fixed;
             top: 0;
             left: 0;
@@ -45,164 +45,99 @@
             z-index: 1;
         }
 
-        .decoration {
+        .sparkle {
             position: absolute;
-            opacity: 0.6;
-            animation: floatUp 12s linear infinite;
-            font-size: 2rem;
+            color: #fff;
+            font-size: 1.5rem;
+            animation: twinkle 3s ease infinite;
         }
 
-        .decoration:nth-child(1) { left: 10%; animation-delay: 0s; }
-        .decoration:nth-child(2) { left: 20%; animation-delay: 2s; }
-        .decoration:nth-child(3) { left: 30%; animation-delay: 4s; }
-        .decoration:nth-child(4) { left: 40%; animation-delay: 6s; }
-        .decoration:nth-child(5) { left: 50%; animation-delay: 8s; }
-        .decoration:nth-child(6) { left: 60%; animation-delay: 10s; }
-        .decoration:nth-child(7) { left: 70%; animation-delay: 1s; }
-        .decoration:nth-child(8) { left: 80%; animation-delay: 3s; }
-        .decoration:nth-child(9) { left: 90%; animation-delay: 5s; }
+        .sparkle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { top: 60%; left: 20%; animation-delay: 1s; }
+        .sparkle:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+        .sparkle:nth-child(5) { top: 30%; left: 90%; animation-delay: 2s; }
+        .sparkle:nth-child(6) { top: 70%; left: 5%; animation-delay: 2.5s; }
 
-        @keyframes floatUp {
-            0% { 
-                transform: translateY(100vh) rotate(0deg) scale(0.5);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.6;
-            }
-            90% {
-                opacity: 0.6;
-            }
-            100% { 
-                transform: translateY(-100px) rotate(360deg) scale(1.2);
-                opacity: 0;
-            }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
         }
 
-        .game-container {
+        .container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
-            padding: 40px;
+            padding: 30px;
             box-shadow: 
-                0 30px 60px rgba(0,0,0,0.15),
-                0 0 0 1px rgba(255,255,255,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.6);
-            max-width: 700px;
+                0 20px 40px rgba(0, 0, 0, 0.2),
+                0 0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 0 10px rgba(255, 182, 193, 0.3);
+            max-width: 420px;
             width: 100%;
             text-align: center;
             position: relative;
             z-index: 10;
-            backdrop-filter: blur(20px);
-            border: 3px solid rgba(255,255,255,0.2);
+            animation: glow 4s ease infinite;
         }
 
-        .game-container::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
-            border-radius: 32px;
-            z-index: -1;
-            animation: borderGlow 3s ease infinite;
-        }
-
-        @keyframes borderGlow {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 0 5px rgba(255, 255, 255, 0.8), 0 0 0 10px rgba(255, 182, 193, 0.3); }
+            50% { box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 5px rgba(255, 255, 255, 1), 0 0 0 10px rgba(255, 105, 180, 0.5); }
         }
 
         .title {
             font-family: 'Fredoka One', cursive;
-            font-size: 3.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #feca57, #ff9ff3);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: rainbowPulse 4s ease infinite;
-            text-shadow: 0 0 30px rgba(255,107,107,0.3);
-            margin-bottom: 20px;
-            position: relative;
+            animation: textRainbow 3s ease infinite;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
         }
 
-        @keyframes rainbowPulse {
-            0%, 100% { 
-                background-position: 0% 50%;
-                transform: scale(1);
-            }
-            50% { 
-                background-position: 100% 50%;
-                transform: scale(1.05);
-            }
+        @keyframes textRainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         .subtitle {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #666;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             font-weight: 600;
         }
 
-        .start-screen {
-            display: block;
-        }
-
-        .game-screen {
-            display: none;
-        }
-
-        .game-over-screen {
-            display: none;
-        }
-
         .mascot {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(45deg, #ff9a9e, #fecfef);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            margin: 0 auto 30px;
-            box-shadow: 
-                0 15px 35px rgba(255,154,158,0.4),
-                inset 0 -5px 15px rgba(255,154,158,0.2);
-            animation: mascotBounce 3s ease infinite;
-            border: 5px solid rgba(255,255,255,0.8);
+            font-size: 5rem;
+            margin: 20px 0;
+            animation: bounce 2s ease infinite;
+            filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.3));
         }
 
-        @keyframes mascotBounce {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-                box-shadow: 0 15px 35px rgba(255,154,158,0.4);
-            }
-            50% { 
-                transform: translateY(-15px) rotate(5deg);
-                box-shadow: 0 25px 45px rgba(255,154,158,0.6);
-            }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 25px;
         }
 
         .stat-box {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
             color: white;
-            padding: 20px;
+            padding: 15px 8px;
             border-radius: 20px;
-            font-weight: bold;
+            font-weight: 700;
             box-shadow: 
-                0 15px 35px rgba(102,126,234,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                0 8px 20px rgba(255, 154, 158, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -210,90 +145,85 @@
         .stat-box::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.6s;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s ease infinite;
         }
 
-        .stat-box:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(102,126,234,0.4);
-        }
-
-        .stat-box:hover::before {
-            left: 100%;
+        @keyframes shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .stat-label {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.9;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-value {
-            font-size: 2.2rem;
-            font-weight: 800;
-        }
-
-        .progress-container {
-            margin: 25px 0;
+            font-size: 1.8rem;
+            font-weight: 900;
             position: relative;
+            z-index: 2;
         }
 
         .progress-bar {
-            background: linear-gradient(45deg, #e0e0e0, #f0f0f0);
+            background: linear-gradient(45deg, #ffecd2, #fcb69f);
             border-radius: 25px;
-            height: 35px;
+            height: 30px;
+            margin: 20px 0;
             overflow: hidden;
-            box-shadow: 
-                inset 0 2px 5px rgba(0,0,0,0.1),
-                0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
             position: relative;
         }
 
-        .progress-fill {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d, #4facfe);
-            background-size: 200% 200%;
-            height: 100%;
-            width: 0%;
-            border-radius: 25px;
-            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            animation: progressShimmer 2s ease infinite;
-            position: relative;
-        }
-
-        @keyframes progressShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .progress-fill::after {
+        .progress-bar::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            animation: progressGlow 2s ease infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: progressShine 2s ease infinite;
         }
 
-        @keyframes progressGlow {
+        @keyframes progressShine {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
 
-        .word-area {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        .progress-fill {
+            background: linear-gradient(45deg, #ff9a9e, #f093fb, #a8edea);
+            background-size: 200% 200%;
+            height: 100%;
+            width: 0%;
             border-radius: 25px;
-            padding: 40px;
-            margin: 30px 0;
+            transition: width 0.8s ease;
+            animation: progressRainbow 2s ease infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes progressRainbow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .word-area {
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            border-radius: 25px;
+            padding: 30px 20px;
+            margin: 25px 0;
             box-shadow: 
-                0 20px 40px rgba(102,126,234,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+                0 15px 30px rgba(168, 237, 234, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
             position: relative;
             overflow: hidden;
         }
@@ -301,113 +231,102 @@
         .word-area::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: wordAreaRotate 6s linear infinite;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a8edea, #fed6e3);
+            border-radius: 30px;
+            z-index: -1;
+            animation: borderRainbow 4s ease infinite;
         }
 
-        @keyframes wordAreaRotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes borderRainbow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
         }
 
         .word-display {
-            background: rgba(255,255,255,0.95);
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
+            padding: 25px 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 2;
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            border: 2px solid rgba(255,255,255,0.3);
         }
 
         .current-word {
-            font-size: 3.5rem;
-            color: #333;
-            font-weight: 800;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #2d3436;
             animation: wordPulse 2s ease infinite;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Fredoka One', cursive;
         }
 
         @keyframes wordPulse {
-            0%, 100% { 
-                transform: scale(1);
-                color: #333;
-            }
-            50% { 
-                transform: scale(1.05);
-                color: #4ecdc4;
-            }
+            0%, 100% { transform: scale(1); color: #2d3436; }
+            50% { transform: scale(1.05); color: #ff6b6b; }
         }
 
         .romaji-hint {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #636e72;
             font-weight: 600;
         }
 
-        .input-section {
-            margin: 25px 0;
+        .input-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
             position: relative;
             z-index: 2;
         }
 
-        .input-group {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
         .text-input {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             padding: 20px;
             border: none;
-            border-radius: 15px;
-            background: rgba(255,255,255,0.95);
-            box-shadow: 
-                0 8px 25px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.8);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.9);
             text-align: center;
             font-weight: 700;
-            color: #333;
-            min-width: 250px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #2d3436;
+            width: 100%;
+            max-width: 300px;
+            box-shadow: 
+                0 8px 20px rgba(0, 0, 0, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            font-family: inherit;
             border: 3px solid transparent;
         }
 
         .text-input:focus {
             outline: none;
-            border-color: #4ecdc4;
+            border-color: #ff9a9e;
             box-shadow: 
-                0 0 25px rgba(78,205,196,0.4),
-                0 8px 25px rgba(0,0,0,0.1),
-                inset 0 1px 0 rgba(255,255,255,0.8);
-            transform: translateY(-3px);
+                0 0 0 5px rgba(255, 154, 158, 0.3),
+                0 8px 20px rgba(0, 0, 0, 0.1),
+                inset 0 2px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
         }
 
         .check-btn {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            background: linear-gradient(135deg, #ff9a9e, #f093fb);
             color: white;
             border: none;
-            padding: 20px 35px;
-            font-size: 1.4rem;
-            border-radius: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            border-radius: 20px;
+            font-weight: 800;
             box-shadow: 
-                0 8px 25px rgba(255,107,107,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+                0 8px 20px rgba(255, 154, 158, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -419,36 +338,32 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-        }
-
-        .check-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255,107,107,0.4);
-        }
-
-        .check-btn:hover::before {
-            left: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
 
         .check-btn:active {
-            transform: translateY(-1px) scale(1.02);
+            transform: translateY(2px);
+            box-shadow: 0 4px 10px rgba(255, 154, 158, 0.4);
+        }
+
+        .check-btn:active::before {
+            left: 100%;
         }
 
         .start-btn {
-            background: linear-gradient(135deg, #4ecdc4, #44a08d);
-            color: white;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: #2d3436;
             border: none;
-            padding: 25px 50px;
-            font-size: 1.6rem;
+            padding: 20px 40px;
+            font-size: 1.3rem;
             border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 800;
             box-shadow: 
-                0 12px 35px rgba(78,205,196,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+                0 8px 20px rgba(168, 237, 234, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
         }
@@ -460,121 +375,126 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.8s;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
         }
 
-        .start-btn:hover {
-            transform: translateY(-5px) scale(1.08);
-            box-shadow: 0 20px 50px rgba(78,205,196,0.4);
+        .start-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 10px rgba(168, 237, 234, 0.4);
         }
 
-        .start-btn:hover::before {
+        .start-btn:active::before {
             left: 100%;
         }
 
         .feedback {
-            font-size: 1.8rem;
-            font-weight: bold;
-            margin: 25px 0;
-            min-height: 60px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 20px 0;
+            min-height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
-            z-index: 2;
         }
 
         .correct {
-            color: #4ecdc4;
-            animation: correctBurst 1s ease;
+            color: #00b894;
+            animation: correctJump 0.8s ease;
         }
 
         .incorrect {
-            color: #ff6b6b;
-            animation: incorrectShake 0.8s ease;
+            color: #e17055;
+            animation: incorrectWiggle 0.6s ease;
         }
 
-        @keyframes correctBurst {
-            0% { 
-                transform: scale(0.3) rotate(-10deg);
-                opacity: 0;
-            }
-            50% { 
-                transform: scale(1.3) rotate(5deg);
-                opacity: 1;
-            }
-            100% { 
-                transform: scale(1) rotate(0deg);
-                opacity: 1;
-            }
+        @keyframes correctJump {
+            0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
         }
 
-        @keyframes incorrectShake {
+        @keyframes incorrectWiggle {
             0%, 100% { transform: translateX(0) rotate(0deg); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-15px) rotate(-3deg); }
-            20%, 40%, 60%, 80% { transform: translateX(15px) rotate(3deg); }
+            20% { transform: translateX(-8px) rotate(-5deg); }
+            40% { transform: translateX(8px) rotate(5deg); }
+            60% { transform: translateX(-8px) rotate(-5deg); }
+            80% { transform: translateX(8px) rotate(5deg); }
         }
 
         .final-stats {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
             border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            color: white;
-            box-shadow: 
-                0 15px 35px rgba(102,126,234,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.2);
+            padding: 25px;
+            margin: 25px 0;
+            color: #2d3436;
+            box-shadow: 0 10px 25px rgba(168, 237, 234, 0.4);
         }
 
         .final-stat {
-            font-size: 1.4rem;
-            margin: 15px 0;
-            font-weight: 700;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 15px 0;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
         }
 
         .final-stat:last-child {
             border-bottom: none;
-            font-size: 1.6rem;
-            color: #ffd93d;
+            font-size: 1.3rem;
+            color: #e17055;
+            margin-top: 20px;
         }
 
-        .sparkle {
-            position: absolute;
-            color: #ffd93d;
-            font-size: 1.5rem;
-            animation: sparkleFloat 2s ease infinite;
-            pointer-events: none;
+        .start-screen { display: block; }
+        .game-screen { display: none; }
+        .game-over-screen { display: none; }
+
+        .intro-text {
+            background: rgba(255, 154, 158, 0.15);
+            border-radius: 20px;
+            padding: 20px;
+            margin: 20px 0;
+            font-size: 1rem;
+            color: #2d3436;
+            font-weight: 600;
+            line-height: 1.6;
         }
 
-        @keyframes sparkleFloat {
-            0%, 100% { 
-                transform: translateY(0px) rotate(0deg);
-                opacity: 1;
-            }
-            50% { 
-                transform: translateY(-20px) rotate(180deg);
-                opacity: 0.7;
-            }
+        .text-input.shake {
+            animation: inputShake 0.6s ease;
         }
 
-        /* パーティクル効果 */
+        @keyframes inputShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .word-display.success {
+            animation: successBurst 0.8s ease;
+        }
+
+        @keyframes successBurst {
+            0% { transform: scale(1); background: rgba(255, 255, 255, 0.9); }
+            50% { transform: scale(1.05); background: rgba(0, 184, 148, 0.2); }
+            100% { transform: scale(1); background: rgba(255, 255, 255, 0.9); }
+        }
+
+        /* 成功パーティクル */
         .particle {
             position: absolute;
             width: 8px;
             height: 8px;
-            background: #4ecdc4;
             border-radius: 50%;
             pointer-events: none;
-            animation: particleExplode 1s ease-out forwards;
+            animation: particleFly 1s ease-out forwards;
         }
 
-        @keyframes particleExplode {
+        @keyframes particleFly {
             0% {
                 transform: scale(0);
                 opacity: 1;
@@ -585,109 +505,117 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
+        /* iPhone最適化 */
+        @media (max-width: 390px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
             }
-            
+
+            .title {
+                font-size: 2.2rem;
+            }
+
             .current-word {
                 font-size: 2.5rem;
             }
-            
-            .text-input {
-                font-size: 1.4rem;
-                min-width: 200px;
-                padding: 15px;
-            }
-            
-            .check-btn {
-                padding: 15px 25px;
-                font-size: 1.2rem;
-            }
-            
-            .stats {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 15px;
-            }
-            
+
             .mascot {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
+                font-size: 4rem;
             }
 
-            .input-group {
-                flex-direction: column;
+            .text-input {
+                font-size: 1.3rem;
+                padding: 18px;
+            }
+
+            .check-btn, .start-btn {
+                padding: 16px 30px;
+                font-size: 1.1rem;
             }
         }
 
-        .text-input.shake {
-            animation: inputShake 0.5s ease;
-        }
-
-        @keyframes inputShake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-            20%, 40%, 60%, 80% { transform: translateX(8px); }
-        }
-
-        .word-display.success-flash {
-            animation: successFlash 0.6s ease;
-        }
-
-        @keyframes successFlash {
-            0%, 100% { 
-                background: rgba(255,255,255,0.95);
-                transform: scale(1);
+        @media (max-width: 375px) {
+            .stats {
+                gap: 10px;
             }
-            50% { 
-                background: rgba(78,205,196,0.3);
-                transform: scale(1.02);
+
+            .stat-box {
+                padding: 12px 6px;
+            }
+
+            .stat-value {
+                font-size: 1.6rem;
+            }
+
+            .word-area {
+                padding: 25px 15px;
+            }
+        }
+
+        /* 横向きモード */
+        @media (orientation: landscape) and (max-height: 500px) {
+            body {
+                padding: 15px;
+                align-items: flex-start;
+            }
+
+            .container {
+                margin-top: 10px;
+                padding: 20px;
+            }
+
+            .mascot {
+                font-size: 3rem;
+                margin: 15px 0;
+            }
+
+            .word-area {
+                padding: 20px 15px;
+            }
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
             }
         }
     </style>
 </head>
 <body>
-    <!-- 浮遊する装飾要素 -->
-    <div class="floating-decorations">
-        <div class="decoration">🌟</div>
-        <div class="decoration">⭐</div>
-        <div class="decoration">🎈</div>
-        <div class="decoration">🎪</div>
-        <div class="decoration">🎮</div>
-        <div class="decoration">🎯</div>
-        <div class="decoration">🏆</div>
-        <div class="decoration">💎</div>
-        <div class="decoration">🦄</div>
+    <!-- キラキラエフェクト -->
+    <div class="sparkles">
+        <div class="sparkle">✨</div>
+        <div class="sparkle">⭐</div>
+        <div class="sparkle">💫</div>
+        <div class="sparkle">🌟</div>
+        <div class="sparkle">✨</div>
+        <div class="sparkle">⭐</div>
     </div>
 
-    <div class="game-container">
+    <div class="container">
         <!-- スタート画面 -->
         <div id="startScreen" class="start-screen">
-            <h1 class="title">ファンタジータイピング王国</h1>
-            <p class="subtitle">魔法の文字でタイピングマスターになろう！</p>
-            <div class="mascot">🦄</div>
-            <div style="background: linear-gradient(45deg, #a8edea, #fed6e3); border-radius: 20px; padding: 25px; margin: 25px 0;">
-                <p style="font-size: 1.2rem; color: #333; font-weight: 600; line-height: 1.6;">
-                    🌈 ひらがなの魔法の言葉を見て、ローマ字で入力してね！<br>
-                    ✨ 全部で10問の冒険が待っているよ<br>
-                    🎯 君も今日からタイピング王国の騎士だ！
-                </p>
+            <h1 class="title">🦄 マジカルタイピング</h1>
+            <p class="subtitle">魔法の文字でレベルアップしよう！</p>
+            <div class="mascot">🎪</div>
+            <div class="intro-text">
+                🌈 ひらがなを見て、魔法のローマ字で入力してね！<br>
+                ✨ 10個の魔法をマスターして伝説の魔法使いになろう！<br>
+                🎯 きみならできる！さあ、冒険のはじまりだ！
             </div>
-            <button class="start-btn" onclick="startGame()">
-                <span style="margin-right: 10px;">🗡️</span>
-                冒険を始める！
-                <span style="margin-left: 10px;">🏰</span>
-            </button>
+            <button class="start-btn" onclick="startGame()">🚀 魔法の冒険スタート！</button>
         </div>
 
         <!-- ゲーム画面 -->
         <div id="gameScreen" class="game-screen">
-            <h1 class="title">⚔️ バトル中！</h1>
+            <h1 class="title">🔮 魔法バトル中！</h1>
             
             <div class="stats">
                 <div class="stat-box">
-                    <div class="stat-label">💰 ゴールド</div>
+                    <div class="stat-label">✨ 魔法力</div>
                     <div class="stat-value" id="score">0</div>
                 </div>
                 <div class="stat-box">
@@ -695,41 +623,30 @@
                     <div class="stat-value" id="correct">0</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-label">🐉 残り敵</div>
+                    <div class="stat-label">🐲 残り</div>
                     <div class="stat-value" id="remaining">10</div>
                 </div>
             </div>
 
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-                <p style="font-size: 1rem; color: #666; margin-top: 10px; font-weight: 600;">
-                    🗺️ 冒険の進行度
-                </p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
             </div>
 
             <div class="word-area">
                 <div class="word-display" id="wordDisplay">
-                    <div style="font-size: 1.1rem; color: #666; margin-bottom: 10px; font-weight: 600;">
-                        📜 魔法の言葉
-                    </div>
                     <div class="current-word" id="currentWord">ねこ</div>
-                    <div class="romaji-hint" id="romajiHint">「neko」と唱えて魔法を発動！</div>
+                    <div class="romaji-hint" id="romajiHint">魔法の呪文：「neko」</div>
                 </div>
                 
-                <div class="input-section">
-                    <div class="input-group">
-                        <input type="text" class="text-input" id="userInput" 
-                               placeholder="🗡️ ここに魔法を唱えよ" 
-                               autocomplete="off"
-                               autocorrect="off"
-                               autocapitalize="off"
-                               spellcheck="false">
-                        <button class="check-btn" onclick="checkAnswer()">
-                            ⚔️ 攻撃！
-                        </button>
-                    </div>
+                <div class="input-area">
+                    <input type="text" class="text-input" id="userInput" 
+                           placeholder="🪄 ここに魔法を唱えよう" 
+                           autocomplete="off"
+                           autocorrect="off"
+                           autocapitalize="off"
+                           spellcheck="false"
+                           inputmode="latin">
+                    <button class="check-btn" onclick="checkAnswer()">⚡ 魔法発動！</button>
                 </div>
                 
                 <div class="feedback" id="feedback"></div>
@@ -739,35 +656,30 @@
         <!-- ゲームオーバー画面 -->
         <div id="gameOverScreen" class="game-over-screen">
             <h1 class="title">🎊 冒険完了！</h1>
-            <div class="mascot">👑</div>
+            <div class="mascot">🏆</div>
             <div class="final-stats">
                 <div class="final-stat">
-                    <span>💰 獲得ゴールド</span>
-                    <span><span id="finalScore">0</span>枚</span>
+                    <span>✨ 獲得魔法力</span>
+                    <span><span id="finalScore">0</span>ポイント</span>
                 </div>
                 <div class="final-stat">
-                    <span>🏆 撃破した敵</span>
+                    <span>🏆 倒したモンスター</span>
                     <span><span id="finalCorrect">0</span>体</span>
                 </div>
                 <div class="final-stat">
-                    <span>📊 勝率</span>
+                    <span>📊 成功率</span>
                     <span><span id="accuracy">0</span>%</span>
                 </div>
                 <div class="final-stat">
-                    <span>🎖️ 獲得称号</span>
-                    <span id="rank">見習い騎士</span>
+                    <span>🎖️ 君の称号</span>
+                    <span id="rank">見習い魔法使い</span>
                 </div>
             </div>
-            <button class="start-btn" onclick="resetGame()">
-                <span style="margin-right: 10px;">🔄</span>
-                新たな冒険へ！
-                <span style="margin-left: 10px;">✨</span>
-            </button>
+            <button class="start-btn" onclick="resetGame()">🌟 新しい冒険へ！</button>
         </div>
     </div>
 
     <script>
-        // 単語データ
         const words = [
             { hiragana: 'ねこ', romaji: 'neko' },
             { hiragana: 'いぬ', romaji: 'inu' },
@@ -791,20 +703,17 @@
             { hiragana: 'がっこう', romaji: 'gakkou' }
         ];
 
-        // ゲーム変数
         let currentWords = [];
         let currentIndex = 0;
         let score = 0;
         let correctCount = 0;
         let totalQuestions = 10;
 
-        // ゲーム開始
         function startGame() {
             document.getElementById('startScreen').style.display = 'none';
             document.getElementById('gameScreen').style.display = 'block';
             document.getElementById('gameOverScreen').style.display = 'none';
             
-            // 単語をシャッフルして選択
             currentWords = shuffleArray([...words]).slice(0, totalQuestions);
             currentIndex = 0;
             score = 0;
@@ -812,10 +721,12 @@
             
             updateStats();
             showNextWord();
-            document.getElementById('userInput').focus();
+            
+            setTimeout(() => {
+                document.getElementById('userInput').focus();
+            }, 300);
         }
 
-        // 配列をシャッフル
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -824,25 +735,23 @@
             return array;
         }
 
-        // 次の単語を表示
         function showNextWord() {
             if (currentIndex < currentWords.length) {
                 const word = currentWords[currentIndex];
                 document.getElementById('currentWord').textContent = word.hiragana;
-                document.getElementById('romajiHint').textContent = `「${word.romaji}」と唱えて魔法を発動！`;
+                document.getElementById('romajiHint').textContent = `魔法の呪文：「${word.romaji}」`;
                 document.getElementById('userInput').value = '';
                 document.getElementById('feedback').textContent = '';
-                document.getElementById('userInput').focus();
                 
-                // 入力フィールドのエラースタイルをリセット
                 document.getElementById('userInput').classList.remove('shake');
-                document.getElementById('wordDisplay').classList.remove('success-flash');
+                document.getElementById('wordDisplay').classList.remove('success');
+                
+                document.getElementById('userInput').focus();
             } else {
                 endGame();
             }
         }
 
-        // 答えをチェック
         function checkAnswer() {
             const userInput = document.getElementById('userInput').value.toLowerCase().trim();
             const correctAnswer = currentWords[currentIndex].romaji;
@@ -851,42 +760,40 @@
             const wordDisplay = document.getElementById('wordDisplay');
             
             if (userInput === correctAnswer) {
-                feedbackElement.innerHTML = '🎉 見事！魔法が成功したぞ！ ⚔️';
+                feedbackElement.innerHTML = '🎉 すごい！魔法が成功したよ！ ✨';
                 feedbackElement.className = 'feedback correct';
                 score += 100;
                 correctCount++;
                 
-                // 成功エフェクト
-                wordDisplay.classList.add('success-flash');
-                createSuccessParticles();
-                addSparkles();
+                wordDisplay.classList.add('success');
+                createMagicalParticles();
                 
                 setTimeout(() => {
                     currentIndex++;
                     updateStats();
                     showNextWord();
-                }, 2000);
+                }, 1800);
             } else {
-                feedbackElement.innerHTML = '❌ 魔法に失敗！もう一度唱えてみよう！ 🔮';
+                feedbackElement.innerHTML = '💫 おしい！もう一度魔法を唱えてみて！';
                 feedbackElement.className = 'feedback incorrect';
                 
-                // エラーエフェクト
                 inputField.classList.add('shake');
                 setTimeout(() => {
                     inputField.classList.remove('shake');
-                }, 500);
+                }, 600);
                 
                 inputField.value = '';
                 inputField.focus();
             }
         }
 
-        // 成功時のパーティクル効果
-        function createSuccessParticles() {
+        function createMagicalParticles() {
             const wordDisplay = document.getElementById('wordDisplay');
             const rect = wordDisplay.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
+            
+            const colors = ['#ff9a9e', '#fad0c4', '#a8edea', '#fed6e3', '#f093fb'];
             
             for (let i = 0; i < 15; i++) {
                 const particle = document.createElement('div');
@@ -895,15 +802,12 @@
                 particle.style.left = centerX + 'px';
                 particle.style.top = centerY + 'px';
                 particle.style.zIndex = '1000';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
                 const dx = (Math.random() - 0.5) * 300;
                 const dy = (Math.random() - 0.5) * 300;
                 particle.style.setProperty('--dx', dx + 'px');
                 particle.style.setProperty('--dy', dy + 'px');
-                
-                // ランダムな色
-                const colors = ['#4ecdc4', '#ff6b6b', '#ffd93d', '#45b7d1', '#96ceb4'];
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 
                 document.body.appendChild(particle);
                 
@@ -913,24 +817,6 @@
             }
         }
 
-        // キラキラエフェクトを追加
-        function addSparkles() {
-            const container = document.querySelector('.game-container');
-            for (let i = 0; i < 5; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.innerHTML = '✨';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.top = Math.random() * 100 + '%';
-                container.appendChild(sparkle);
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 2000);
-            }
-        }
-
-        // 統計を更新
         function updateStats() {
             document.getElementById('score').textContent = score;
             document.getElementById('correct').textContent = correctCount;
@@ -940,53 +826,51 @@
             document.getElementById('progressFill').style.width = progress + '%';
         }
 
-        // ゲーム終了
         function endGame() {
             document.getElementById('gameScreen').style.display = 'none';
             document.getElementById('gameOverScreen').style.display = 'block';
             
             const accuracy = Math.round((correctCount / totalQuestions) * 100);
             
-            // ファンタジー風のランク判定
-            let rank = '見習い騎士';
+            let rank = '見習い魔法使い';
             if (accuracy === 100) rank = '🌟 伝説の大魔導師！';
-            else if (accuracy >= 90) rank = '⚔️ 王国騎士団長';
-            else if (accuracy >= 80) rank = '🛡️ 熟練騎士';
-            else if (accuracy >= 70) rank = '🗡️ 一人前騎士';
-            else if (accuracy >= 60) rank = '🎯 駆け出し騎士';
-            else if (accuracy >= 50) rank = '📚 見習い魔法使い';
+            else if (accuracy >= 90) rank = '⚡ 上級魔法使い';
+            else if (accuracy >= 80) rank = '🔮 中級魔法使い';
+            else if (accuracy >= 70) rank = '✨ 初級魔法使い';
+            else if (accuracy >= 60) rank = '🪄 魔法の練習生';
+            else if (accuracy >= 50) rank = '📚 魔法学校の生徒';
             
             document.getElementById('finalScore').textContent = score;
             document.getElementById('finalCorrect').textContent = correctCount;
             document.getElementById('accuracy').textContent = accuracy;
             document.getElementById('rank').textContent = rank;
             
-            // 終了時のお祝いエフェクト
+            // 高スコア時は特別演出
             if (accuracy >= 80) {
-                setTimeout(createSuccessParticles, 500);
-                setTimeout(createSuccessParticles, 1000);
-                setTimeout(createSuccessParticles, 1500);
+                setTimeout(createMagicalParticles, 500);
+                setTimeout(createMagicalParticles, 1000);
+                setTimeout(createMagicalParticles, 1500);
             }
         }
 
-        // ゲームリセット
         function resetGame() {
             document.getElementById('gameOverScreen').style.display = 'none';
             document.getElementById('startScreen').style.display = 'block';
         }
 
-        // イベントリスナーの設定
+        // イベントリスナー
         document.addEventListener('DOMContentLoaded', function() {
             const inputField = document.getElementById('userInput');
             
-            // Enterキーでチェック
+            // Enterキーで答えをチェック
             inputField.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
+                    e.preventDefault();
                     checkAnswer();
                 }
             });
             
-            // ローマ字のみ入力可能にする
+            // ローマ字のみ入力可能
             inputField.addEventListener('input', function(e) {
                 const value = e.target.value;
                 const romanOnly = value.replace(/[^a-zA-Z]/g, '');
@@ -994,29 +878,30 @@
                     e.target.value = romanOnly;
                 }
             });
+
+            // ダブルタップズーム防止
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function (event) {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    event.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
         });
 
-        // 動的な背景効果のための追加要素生成
-        function createFloatingDecorations() {
-            const decorations = document.querySelector('.floating-decorations');
-            const emojis = ['🌟', '⭐', '🎈', '🎪', '🎮', '🎯', '🏆', '💎', '🦄', '🔮', '⚔️', '🛡️'];
-            
-            setInterval(() => {
-                if (decorations.children.length < 12) {
-                    const decoration = document.createElement('div');
-                    decoration.className = 'decoration';
-                    decoration.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                    decoration.style.left = Math.random() * 100 + '%';
-                    decoration.style.animationDuration = (8 + Math.random() * 4) + 's';
-                    decorations.appendChild(decoration);
-                    
-                    setTimeout(() => {
-                        decoration.remove();
-                    }, 12000);
+        // タッチ最適化
+        document.addEventListener('touchstart', function() {}, { passive: true });
+        
+        // 画面回転対応
+        window.addEventListener('orientationchange', function() {
+            setTimeout(() => {
+                const inputField = document.getElementById('userInput');
+                if (document.getElementById('gameScreen').style.display !== 'none') {
+                    inputField.focus();
                 }
-            }, 2000);
-        }
-
+            }, 500);
+        });
     </script>
 </body>
 </html>
